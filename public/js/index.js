@@ -30,11 +30,13 @@ socket.on('newLocationMessage', function (message) {
 
 $('#message-form').on('submit', function (e) {
     e.preventDefault();
+    var messageField = $('[name=message]');
+
     socket.emit('createMessage', {
         from: 'User',
-        text: $('[name=message]').val()
+        text: messageField.val()
     }, function () {
-
+        messageField.val('');
     });
 });
 
